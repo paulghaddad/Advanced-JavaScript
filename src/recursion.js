@@ -17,9 +17,28 @@ const nFactorial = (n) => {
 };
 
 /* Extra Credit */
+
+// create another function that retrieves all the leaves
+
+const getAllLeaves = (obj) => {
+  return Object.values(obj).reduce((leaves, value) => {
+    if (typeof value === 'object') {
+      return [...leaves, ...getAllLeaves(value)];
+    }
+
+    return [...leaves, value];
+  }, []);
+};
+
 const checkMatchingLeaves = (obj) => {
   // return true if every property on `obj` is the same
   // otherwise return false
+
+  const uniqLeaves = getAllLeaves(obj).reduce((leafArray, leaf) => {
+    return (leafArray.includes(leaf)) ? leafArray : [...leafArray, leaf];
+  }, []);
+
+  return uniqLeaves.length === 1;
 };
 
 /* eslint-enable no-unused-vars */
