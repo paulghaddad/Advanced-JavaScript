@@ -18,10 +18,15 @@ console.log(isThisMyFavorite);
 //----------------
 //const, class, template literals, enhanced object literals (foo: foo, -> foo,)
 
-function User(options) {
-  this.username = options.username;
-  this.password = options.password;
-  this.sayHi = () => `${this.username} says hello!`;
+class User {
+  constructor({username, password}) {
+    this.username = username;
+    this.password = password;
+  }
+
+  sayHi() {
+    return `${this.username} says hello!`;
+  }
 }
 
 const username = 'JavaScriptForever';
@@ -38,13 +43,11 @@ console.log(me.sayHi());
 // ----------------
 // let, const, =>, ... (spread operator)
 
-const addArgs = function (...numbers) {
+const addArgs = (...numbers) => {
   return numbers.reduce((sum, num) => sum + num);
 };
 
-const argsToCb = function (cb, ...numbers) {
-  return cb(...numbers);
-};
+const argsToCb = (cb, ...numbers) => cb(...numbers);
 
 const result = argsToCb(addArgs, 1, 2, 3, 4, 5); //result should be 15
 
